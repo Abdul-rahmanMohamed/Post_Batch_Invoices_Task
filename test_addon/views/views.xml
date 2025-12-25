@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ticket_store_list">
+            <field name="name">BatchInvoices</field>
+            <field name="model">test_addon.test_addon</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--FORM VIEW  -->
+        <record model="ir.ui.view" id="ticket_tickets_from_invoicesBatches">
+            <field name="name">Batch Invoices</field>
+            <field name="model">test_addon.test_addon</field>
+            <field name="arch" type="xml">
+                <form string="Batch Invoices" class="o_form_project_tasks">
+                    <header>
+                        <button name="action_post_invoices" string="post batch invoices" type="object"
+                                class="oe_highlight o_expense_submit"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <!--                        <group>-->
+                        <group>
+                            <field name="invoice_ids"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" options="{'post_refresh':True}" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="ticket_store_action_window_invoicesBatches">
+            <field name="name">Batch Invoices</field>
+            <field name="res_model">test_addon.test_addon</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- menu categories -->
+        <menuitem
+                id="ticket_store_menu_invoicesBatches"
+                name="Batch Invoices"
+                action="ticket_store_action_window_invoicesBatches"
+                sequence="16"
+                groups="base.group_user"/>
+
+    </data>
+</odoo>
